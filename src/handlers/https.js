@@ -8,10 +8,7 @@ const logger = getLogger('https-handler');
 
 export default async function handleHTTPS(clientSocket, firstChunk, proxy) {
 	const firstLine = firstChunk.toString().split('\r\n')[0];
-	let requestUrl = `https://${firstLine.split(/\s+/)[1]}`;
-
-	requestUrl = requestUrl.replace('http://', '');
-
+	const requestUrl = `https://${firstLine.split(/\s+/)[1]}`;
 	const url = new URL(requestUrl);
 
 	const host = url.hostname;
